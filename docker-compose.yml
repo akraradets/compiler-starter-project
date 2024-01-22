@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  python:
+    image: compiler-python:latest
+    build:
+      context: .
+      dockerfile: .Dockerfile
+    volumes:
+      - ./src:/src/app
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - pipenv:/src/app/.venv
+      - vscode-server:/root/.vscode-server
+    environment:
+      - DISPLAY=${HOSTNAME}:0 # for XQuartz
+
+volumes:
+  pipenv:
+  vscode-server:

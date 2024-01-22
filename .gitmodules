@@ -1,0 +1,4 @@
+[submodule "sly"]
+	path = sly
+	url = https://github.com/dabeaz/sly
+	branch = master
