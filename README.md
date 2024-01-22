@@ -5,7 +5,8 @@ Since 2024, we have used `Python`.
 If you want to use this repository, please use it as a template.
 
 Tools
-- https://www.dabeaz.com/ply/ply.html#ply_nn0
+- https://github.com/dabeaz/sly
 - Python
 - Docker
 - Some sort of X11Client
+
