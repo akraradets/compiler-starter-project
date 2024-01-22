@@ -22,7 +22,7 @@ RUN apt install -y tzdata
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
 # Set locales
 # https://leimao.github.io/blog/Docker-Locale/
-RUN apt-get install -y locales
+RUN apt install -y locales
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen
 ENV LC_ALL en_US.UTF-8 
@@ -31,6 +31,8 @@ ENV LANGUAGE en_US:en
 
 
 # Here we install dependencies of our project
+# Install tkiner for GUI
+RUN apt install -y python3-tk
 # We use pipenv to manage dependencies
 RUN pip install pipenv
 
@@ -40,9 +42,9 @@ RUN --mount=type=bind,source=./src/Pipfile,target=/root/src/Pipfile \
 
 # COPY SLY project to container
 COPY ./sly/src/sly ${VENDORDIR}/sly
-
+COPY ./src ${WORKDIR}
 # Clear apt for optimizing image size
-RUN apt-get clean
+RUN apt clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD tail -f /dev/null
