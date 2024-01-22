@@ -9,6 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # https://stackoverflow.com/questions/59812009/what-is-the-use-of-pythonunbuffered-in-docker-file
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=${WORKDIR}:${VENDORDIR}
+ENV PIPENV_VENV_IN_PROJECT=1
 # Timezone
 ENV TZ="Asia/Bangkok"
 
