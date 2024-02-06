@@ -1,4 +1,4 @@
-FROM python:3.12.1-bookworm
+FROM python:3.9.18-bookworm
 
 ARG WORKDIR=/src/app
 ARG VENDORDIR=/src/vendor
@@ -33,7 +33,8 @@ ENV LANGUAGE en_US:en
 
 # Here we install dependencies of our project
 # Install tkiner for GUI
-RUN apt install -y python3-tk
+# RUN apt install -y python3-tk
+RUN apt -y install designer-qt6
 # We use pipenv to manage dependencies
 RUN pip install pipenv
 

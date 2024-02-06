@@ -10,3 +10,7 @@ Tools
 - Docker
 - Some sort of X11Client
 
+## GUI
+
+We use `PyQt6` and `qt designer 6` for GUI.
+You can start to learn this tool from [here](https://www.pythonguis.com/tutorials/pyqt6-first-steps-qt-designer/#:~:text=To%20load%20.,a%20fully%2Dfunctional%20PyQt6%20object).
