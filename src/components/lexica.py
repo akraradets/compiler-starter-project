@@ -19,7 +19,7 @@ class MyLexer(Lexer):
               ASSIGN, LPAREN, RPAREN }
     
     # https://sly.readthedocs.io/en/latest/sly.html#literal-characters
-    literals = { '+','-','*','/','(',')' }
+    # literals = { '+','-','*','/','(',')' }
     
     ### matching rule ###
     # The matching work from top to bottom
@@ -40,12 +40,12 @@ class MyLexer(Lexer):
         return token
 
     # Try uncomment this and run to see the differences between `token` and `literal`
-    # PLUS = r'\+'
-    # MINUS = r'-'
-    # TIMES = r'\*'
-    # DIVIDE = r'/'
-    # LPAREN = r'\('
-    # RPAREN = r'\)'
+    PLUS = r'\+'
+    MINUS = r'-'
+    TIMES = r'\*'
+    DIVIDE = r'/'
+    LPAREN = r'\('
+    RPAREN = r'\)'
     ASSIGN = r'='
 
     # Extra action for newlines

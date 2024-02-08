@@ -3,6 +3,9 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWidgets import QMainWindow, QLineEdit, QPushButton, QLCDNumber
 
+from components.lexica import MyLexer
+from components.parsers import MyParser
+
 class MainWindow(QMainWindow):
 
     # Do this for intellisense
@@ -10,6 +13,8 @@ class MainWindow(QMainWindow):
     button_2:QPushButton
     button_plus:QPushButton
     button_equal:QPushButton
+    input_text:QLineEdit
+    output_lcd:QLCDNumber
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -34,8 +39,12 @@ class MainWindow(QMainWindow):
     
     def push_equal(self):
         print("Calculate")
-        self.output_lcd:QLCDNumber
-        self.output_lcd.display(10.12)
+        lexer = MyLexer()
+        parser = MyParser()
+        input_text = self.input_text.text()
+        result = parser.parse(lexer.tokenize(input_text))
+        print(type(result))
+        self.output_lcd.display(result)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
