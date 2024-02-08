@@ -1,14 +1,6 @@
 from sly import Lexer
 import sly
 
-
-def print_token(self):
-    return "override!!!"
-
-
-# def __repr__(self):
-#     return f'Token(type={self.type!r}, value={self.value!r}, lineno={self.lineno}, index={self.index}, end={self.end})'
-
 class MyLexer(Lexer):
     """
     MyLexer is a class that inherits from sly.Lexer
