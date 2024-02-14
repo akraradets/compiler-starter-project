@@ -12,10 +12,6 @@ class MyParser(Parser):
         ('right', UMINUS),
         )
 
-    def __init__(self):
-        self.names = { }
-
-
     @_('expr')
     def statement(self, p):
         return p.expr
@@ -59,10 +55,49 @@ class MyParser(Parser):
     def expr(self, p):
         return int(p.NUMBER)
 
+
+from components.ast.statement import Expression, Expression_math, Expression_number, Operations
+class ASTParser(Parser):
+    debugfile = 'parser.out'
+    start = 'statement'
+    # Get the token list from the lexer (required)
+    tokens = MyLexer.tokens
+    precedence = (
+        ('left', "+", MINUS),
+        # ('left', TIMES, DIVIDE),
+        # ('right', UMINUS),
+        )
+
+    @_('expr')
+    def statement(self, p) -> int:
+        p.expr.run()
+        return p.expr.value
+
+    @_('expr "+" expr')
+    def expr(self, p) -> Expression:
+        parameter1 = p.expr0
+        parameter2 = p.expr1
+        expr = Expression_math(operation=Operations.PLUS, parameter1=parameter1, parameter2=parameter2)
+        return expr
+    
+    @_('expr MINUS expr')
+    def expr(self, p) -> Expression:
+        parameter1 = p.expr0
+        parameter2 = p.expr1
+        expr = Expression_math(operation=Operations.MINUS, parameter1=parameter1, parameter2=parameter2)
+        return expr
+
+    @_('NUMBER')
+    def expr(self, p) -> Expression:
+        return Expression_number(number=p.NUMBER)
+        
+        
+
         
 if __name__ == "__main__":
     lexer = MyLexer()
-    parser = MyParser()
-    text = "1 + 2 - 1"
+    # parser = MyParser()
+    parser = ASTParser()
+    text = "1 + 2 + 3"
     result = parser.parse(lexer.tokenize(text))
     print(result)
