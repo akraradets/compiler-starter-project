@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QMainWindow, QLineEdit, QPushButton, QLCDNumber
 
 from components.lexica import MyLexer
 from components.parsers import MyParser
+from components.memory import Memory
 
 class MainWindow(QMainWindow):
 
@@ -41,10 +42,13 @@ class MainWindow(QMainWindow):
         print("Calculate")
         lexer = MyLexer()
         parser = MyParser()
+        memory = Memory()
         input_text = self.input_text.text()
         result = parser.parse(lexer.tokenize(input_text))
         print(type(result))
         self.output_lcd.display(result)
+        # for debug
+        print(memory)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

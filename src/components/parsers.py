@@ -1,4 +1,5 @@
 from components.lexica import MyLexer
+from components.memory import Memory
 from sly import Parser
 
 class MyParser(Parser):
@@ -12,8 +13,18 @@ class MyParser(Parser):
         ('right', UMINUS),
         )
 
-    @_('expr')
+    def __init__(self):
+        self.memory:Memory = Memory()
+
+    @_('NAME ASSIGN expr')
     def statement(self, p):
+        var_name = p.NAME
+        value = p.expr
+        self.memory.set(variable_name=var_name,value=value, data_type=type(value))
+        # Note that I did not return anything
+
+    @_('expr')
+    def statement(self, p) -> int:
         return p.expr
 
     # The example with literals
@@ -95,9 +106,12 @@ class ASTParser(Parser):
 
         
 if __name__ == "__main__":
+    memory = Memory()
     lexer = MyLexer()
-    # parser = MyParser()
-    parser = ASTParser()
-    text = "1 + 2 + 3"
+    parser = MyParser()
+    text = "a = 1 + 2 + 3"
+    # parser = ASTParser()
+    # text = "1 + 2 + 3"
     result = parser.parse(lexer.tokenize(text))
     print(result)
+    print(memory)
