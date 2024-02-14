@@ -106,10 +106,10 @@ class ASTParser(Parser):
 
         
 if __name__ == "__main__":
-    memory = Memory()
     lexer = MyLexer()
     parser = MyParser()
     text = "a = 1 + 2 + 3"
+    # memory = Memory()
     # parser = ASTParser()
     # text = "1 + 2 + 3"
     result = parser.parse(lexer.tokenize(text))
