@@ -15,11 +15,10 @@ class MyLexer(Lexer):
     # set `tokens` so it can be used in the parser.
     # This must be here and all Capitalized. 
     # Please, ignore IDE warning.
-    tokens = { NAME, NUMBER, PLUS, TIMES, MINUS, DIVIDE, 
-              ASSIGN, LPAREN, RPAREN }
+    tokens = { NUMBER, MINUS, DIVIDE, TIMES, LPAREN, RPAREN  }
     
     # https://sly.readthedocs.io/en/latest/sly.html#literal-characters
-    # literals = { '+','-','*','/','(',')' }
+    literals = { '+' }
     
     ### matching rule ###
     # The matching work from top to bottom
@@ -29,24 +28,23 @@ class MyLexer(Lexer):
     ignore = ' \t'
 
     ### EX1: simply define with regEX ###
-    NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    # NAME = r'[a-zA-Z_][a-zA-Z0-9_]*'
     ### EX2: Define as a function ###
     @_(r'\d+')
     def NUMBER(self, token):
         # Note that this function set parse token.value to integer
         token.value = int(token.value)
         # Extra print for debug
-        print(f"This print from NUMBER function: {token.type=} {token.value=} {type(token.value)=}\n")
+        print(f"====This print from NUMBER function: {token.type=} {token.value=} {type(token.value)=}")
         return token
 
     # Try uncomment this and run to see the differences between `token` and `literal`
-    PLUS = r'\+'
-    MINUS = r'-'
-    TIMES = r'\*'
-    DIVIDE = r'/'
-    LPAREN = r'\('
-    RPAREN = r'\)'
-    ASSIGN = r'='
+    # PLUS    = r'\+'
+    MINUS   = r'-'
+    TIMES   = r'\*'
+    DIVIDE  = r'/'
+    LPAREN  = r'\('
+    RPAREN  = r'\)'
 
     # Extra action for newlines
     @_(r'\n+')
@@ -60,9 +58,9 @@ class MyLexer(Lexer):
 
 if __name__ == '__main__':
     # Write a simple test that only run when you execute this file
-    string_input:str = "x1 + 1as!"
+    string_input:str = "x1 + 1as! * ()"
     lex:Lexer = MyLexer()
     # assign type to `token`
     token: sly.lex.Token
     for token in lex.tokenize(string_input):
-        print(f"{token.type=} {token.value=} {type(token.value)=}\n")
+        print(token)
