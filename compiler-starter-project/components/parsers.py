@@ -24,11 +24,13 @@ class MyParser(Parser):
         # Note that I did not return anything
 
     @_('expr')
+    # S -> E
     def statement(self, p) -> int:
         return p.expr
 
     # The example with literals
     @_('expr "+" expr')
+    # E -> E + E
     def expr(self, p):
         # You can refer to the token 2 ways
         # Way1: using array
@@ -107,11 +109,11 @@ class ASTParser(Parser):
         
 if __name__ == "__main__":
     lexer = MyLexer()
-    parser = MyParser()
-    text = "a = 1 + 2 + 3"
-    # memory = Memory()
-    # parser = ASTParser()
+    # parser = MyParser()
+    text = "9 + 2 + 3"
+    memory = Memory()
+    parser = ASTParser()
     # text = "1 + 2 + 3"
     result = parser.parse(lexer.tokenize(text))
     print(result)
-    print(memory)
+    # print(memory)

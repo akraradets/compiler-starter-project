@@ -19,7 +19,7 @@ class MainWindow(QMainWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        uic.loadUi("components/main.ui", self)
+        uic.loadUi("./components/main.ui", self)
 
         #### Binding button to function ####
         # Method 1:

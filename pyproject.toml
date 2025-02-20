@@ -1,0 +1,30 @@
+[project]
+name = "compiler-starter-project"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "akraradets", email = "akraradets@gmail.com"},
+]
+dependencies = [
+    "pyqt6-tools>=6.4.2.3.3", 
+    "sly @ git+https://github.com/dabeaz/sly.git@1.5", 
+    "setuptools>=75.8.0", 
+    "pyqt6>=6.4.2", 
+    "pyqt6-sip>=13.10.0"
+    ]
+    
+requires-python = "==3.9.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts.app]
+cmd = "python main.py"
+working_dir = "compiler-starter-project"
+
+[tool.pdm.scripts.ui]
+cmd = "pyqt6-tools designer components/main.ui"
+working_dir = "compiler-starter-project"
