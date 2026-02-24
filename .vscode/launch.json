@@ -9,7 +9,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "main.py",
-            "cwd": "${workspaceFolder}/compiler-starter-project/"
+            "cwd": "${workspaceFolder}/src/example/"
         }
     ]
 }

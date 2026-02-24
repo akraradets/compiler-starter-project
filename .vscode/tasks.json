@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "start app",
+            "type": "shell",
+            "command": "uv run src/example/main.py"
+        },
+        {
+            "label": "start designer",
+            "type": "shell",
+            "command": "uv run pyside6-designer src/example/components/main.ui"
+        },
+        {
+            "label": "compile designer",
+            "type": "shell",
+            "command": "uv run pyside6-uic src/example/components/main.ui -o src/example/components/ui.py"
+        },
+	]
+}
