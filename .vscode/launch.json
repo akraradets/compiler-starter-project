@@ -8,6 +8,7 @@
             "name": "Python Debugger",
             "type": "debugpy",
             "request": "launch",
+            "python": "${workspaceFolder}/.venv/bin/python",
             "program": "main.py",
             "cwd": "${workspaceFolder}/src/example/"
         }

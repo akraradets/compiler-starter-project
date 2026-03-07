@@ -43,7 +43,7 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY --chown=${USER_UID}:${USER_GID} start.sh /start.sh
 
 # uv setup 
-COPY --from=ghcr.io/astral-sh/uv:0.10.4 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.10.9 /uv /uvx /bin/
 # Enable bytecode compilation
 ENV UV_COMPILE_BYTECODE=1
 # Copy from the cache instead of linking since it's a mounted volume
