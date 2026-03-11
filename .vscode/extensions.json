@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.debugpy",
+        "yzhang.markdown-all-in-one",
+        "michelemelluso.gitignore",
+        "davidanson.vscode-markdownlint"
+    ]
+}
