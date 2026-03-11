@@ -4,17 +4,41 @@
         {
             "label": "start app",
             "type": "shell",
-            "command": "uv run src/example/main.py"
+            "command": "uv",
+            "args": ["run","main.py"],
+            "options": {
+                "cwd":"${workspaceFolder}/src/example"
+            }
         },
         {
             "label": "start designer",
             "type": "shell",
-            "command": "uv run pyside6-designer src/example/components/main.ui"
+            "command": "pyside6-designer",
+            "args": ["components/main.ui"],
+            "options": {
+                "cwd":"${workspaceFolder}/src/example"
+            }
         },
         {
             "label": "compile designer",
             "type": "shell",
-            "command": "uv run pyside6-uic src/example/components/main.ui -o src/example/components/ui.py"
+            "command": "pyside6-uic",
+            "args": ["components/main.ui", "-o", "components/ui.py"],
+            "options": {
+                "cwd":"${workspaceFolder}/src/example"
+            }
+        },
+        {
+            "label": "Install PySide6",
+            "type": "shell",
+            "command": "pip",
+            "args": ["install", "pyside6"],
+        },
+        {
+            "label": "Uninstall PySide6",
+            "type": "shell",
+            "command": "pip",
+            "args": ["uninstall", "-y", "pyside6", "PySide6_Addons", "PySide6_Essentials"],
         },
 	]
 }
